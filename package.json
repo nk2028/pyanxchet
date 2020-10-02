@@ -1,0 +1,8 @@
+{
+  "private": true,
+  "dependencies": {
+    "qieyun": "^0.7.6",
+    "qieyun-examples-node": "0.0.4",
+    "readline-sync": "^1.4.10"
+  }
+}

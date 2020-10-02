@@ -3,24 +3,35 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:image" content="https://avatars3.githubusercontent.com/u/63484757?s=400&amp;v=4"/>
+  <meta name="description" content="自動反切器令你不再為反切苦惱。輸入切語，即刻產生反切結果，並附有詳細解釋。"/>
+  <meta name="keywords" content="音韻學, 《切韻》音系, 中古音, 反切, 反切器"/>
   <title>自動反切器</title>
-  <script src="https://cdn.jsdelivr.net/npm/qieyun@0.7.4"></script>
-  <script src="putonghua.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qieyun@0.7.6"></script>
+  <script src="autoderiver.js"></script>
   <script src="index.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sugina-dev/cdn@20200718/blackboard.css">
-  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css">
+  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hanamin@latest/HanaMin.min.css"/>
   <style>
-    h1 { padding-left: 0; }
-    body { padding: 0.5em 7em; }
-    h1, p, input { text-align: center; }
-    output:empty:before { content: "結果"; color: grey; display: inline-block; }
+  h1 { padding-left: 0; }
+  body { padding: .5em 1em; line-height: 1.6; }
+  .pure-form select { padding: 3px .6em; height: initial; width: 8em; }
+  .pure-form input[type="text"] { display: initial; padding: 5px .6em; width: 4em; }
+  :lang(en) { font-family: sans-serif, sans-serif; }
+  :lang(zh-Hant) { font-family: serif, serif, HanaMin, serif; font-language-override: "KOR"; }
+  output { display: block; }
   </style>
 </head>
 <body>
-  <h1>自動反切器</h1>
-  <form class="pure-form">
-    <p><input type="text" placeholder="反切" onkeyup="結果.value = handleChange(this.value); return false"></p>
-    <p><output id="結果"></output></p>
+  <h1>自動反切器 <span lang="en">(beta)</span></h1>
+  <form class="pure-form" onsubmit="觸發反切(); return false">
+    <p>請輸入兩個字的切語：<input id="反切輸入" type="text" value="德紅" onkeyup="觸發反切(); return false"></p>
+    <p>
+      <select id="上字讀音" onchange="處理多音字選擇(); return false"></select>
+      <select id="下字讀音" onchange="處理多音字選擇(); return false"></select>
+    </p>
   </form>
+  <output id="結果"></output>
+  <script>觸發反切();</script>
 </body>
 </html>

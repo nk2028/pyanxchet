@@ -1,7 +1,5 @@
-# 自動反切器 (WIP)
+# Pyanxchet
 
-TODO:
+A tool to automate the process of obtaining the phonological position of the Qieyun phonological system of a Chinese character by its fanqie
 
-- '不合法音節': 實際上有可能是「有音無字」。解決方案：自動推導。
-- '暫不能處理多音字': 讓用户手動選擇。方法是使用 `get音韻地位` 函數。
-- '不確定': 顯示出所有可能結果。
+Please visit the webpage at <https://nk2028.shn.hk/pyanxchet/>.
