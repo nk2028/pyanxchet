@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>自動反切器</title>
+  <script src="https://cdn.jsdelivr.net/npm/qieyun@0.7.4"></script>
+  <script src="putonghua.js"></script>
+  <script src="index.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sugina-dev/cdn@20200718/blackboard.css">
+  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css">
+  <style>
+    h1 { padding-left: 0; }
+    body { padding: 0.5em 7em; }
+    h1, p, input { text-align: center; }
+    output:empty:before { content: "結果"; color: grey; display: inline-block; }
+  </style>
+</head>
+<body>
+  <h1>自動反切器</h1>
+  <form class="pure-form">
+    <p><input type="text" placeholder="反切" onkeyup="結果.value = handleChange(this.value); return false"></p>
+    <p><output id="結果"></output></p>
+  </form>
+</body>
+</html>
