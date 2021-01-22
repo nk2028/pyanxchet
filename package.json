@@ -1,8 +1,16 @@
 {
   "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "rollup -c"
+  },
   "dependencies": {
-    "qieyun": "^0.7.6",
-    "qieyun-examples-node": "0.0.4",
-    "readline-sync": "^1.4.10"
+    "qieyun": "^0.11.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^17.0.0",
+    "@rollup/plugin-node-resolve": "^11.1.0",
+    "rollup": "^2.37.1",
+    "rollup-plugin-terser": "^7.0.2"
   }
 }
