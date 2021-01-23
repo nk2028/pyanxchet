@@ -32,4 +32,4 @@ outer: for (const 音韻地位 of Qieyun.iter音韻地位()) {
   }
 }
 
-console.log(`正確: ${correct_count}，錯誤: ${incorrect_count}，準確率 ${(correct_count / (correct_count + incorrect_count) * 100).toFixed(2)}%`);
+console.log(`正確 ${correct_count}，錯誤 ${incorrect_count}，準確率 ${(correct_count / (correct_count + incorrect_count) * 100).toFixed(2)}%`);
