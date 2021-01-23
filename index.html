@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:image" content="https://avatars3.githubusercontent.com/u/63484757?s=400&amp;v=4"/>
+  <meta name="description" content="自動反切器可以根據反切自動得到被切字的中古音韻地位及現代發音，並附有詳細的推理步驟及規則説明。"/>
+  <meta name="keywords" content="音韻學, 《切韻》音系, 中古音, 反切, 反切器, 推導普通話, 推導廣州音"/>
+  <title>自動反切器</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tingle/0.15.3/tingle.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tingle/0.15.3/tingle.min.css"/>
+  <script src="pyanxchet.min.js"></script>
+  <script src="index.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@2.0.5"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hanamin@latest/HanaMin.min.css"/>
+  <link rel="stylesheet" href="index.css"/>
+</head>
+<body>
+  <div class="tingle-content-wrapper">
+    <nav>
+      <h1>自動反切器</h1>
+      <input type="button" value="反切規則" onclick="modal1.open(); return false"/>
+      <input type="button" value="關於" onclick="modal2.open(); return false"/>
+    </nav>
+
+    <div class="main-container flex-container">
+      <div class="flex-inner flex-inner-first">
+        <form class="pure-form" onsubmit="觸發反切(); return false">
+          <p><label>請輸入兩個字的切語：<input id="反切輸入" type="text" value="德紅" onkeyup="觸發反切(); return false"/></label></p>
+          <p><label>上字音韻地位：<select id="上字讀音" onchange="處理多音字選擇(); return false"></select></label></p>
+          <p><label>下字音韻地位：<select id="下字讀音" onchange="處理多音字選擇(); return false"></select></label></p>
+        </form>
+      </div>
+
+      <div class="flex-inner flex-inner-second">
+        <p><output id="結果"></output></p>
+      </div>
+    </div>
+  </div>
+
+  <div id="modalTemplateDiv1" style="display: none;">
+    <h2>反切規則</h2>
+    <b>根據反切下字的韻確定被切字的韻</b>
+    <ul>
+      <li>規則 1.1：被切字的韻等於反切下字的韻。</li>
+    </ul>
+    <b>根據反切下字的聲調確定被切字的聲調</b>
+    <ul>
+      <li>規則 2.1：被切字的聲調等於反切下字的聲調。</li>
+    </ul>
+    <b>根據反切上字的聲紐確定被切字的聲紐</b>
+    <ul>
+      <li>規則 3.1：被切字的聲紐等於反切上字的聲紐。</li>
+    </ul>
+    <b>根據反切上下字的重紐確定被切字的重紐</b>
+    <ul>
+      <li>規則 4.1：重紐只會出現於「支脂祭眞仙宵清侵鹽」九個韻。如果被切字的韻不是「支脂祭眞仙宵清侵鹽」九個韻之一，則不需要確定重紐。</li>
+      <li>規則 4.2：重紐只會出現於「幫滂並明見溪羣疑影曉」十個聲紐。如果被切字的聲紐不是「幫滂並明見溪羣疑影曉」十個聲紐之一，則不需要確定重紐。</li>
+      <li>規則 4.3：如果反切上字為重紐A類，則被切字為重紐A類。</li>
+      <li>規則 4.4：如果反切上字為重紐B類，則被切字為重紐B類。</li>
+      <li>規則 4.5：如果反切下字為重紐A類、以母或精組，則被切字為重紐A類。</li>
+      <li>規則 4.6：如果反切下字為重紐B類或云母，則被切字為重紐B類。</li>
+      <li>規則 4.7：在其餘情況下，不能確定被切字的重紐，可能為重紐A類或B類。</li>
+    </ul>
+    <b>根據反切上下字的等確定被切字的等</b>
+    <ul>
+      <li>規則 5.1：如果反切下字為三等，則被切字為三等。</li>
+      <li>規則 5.2：如果反切上下字均為非三等，則被切字為非三等。</li>
+      <li>規則 5.3：在其餘情況下，不能根據反切上下字的等確定被切字的等。</li>
+    </ul>
+    <b>根據反切上下字的開合確定被切字的開合</b>
+    <ul>
+      <li>規則 6.1：脣音字不分開合。如果被切字的聲紐是脣音，即「幫滂並明」四個聲紐之一，則不需要確定開合。</li>
+      <li>規則 6.2：「東冬鍾江虞模尤幽」八個韻是開合中立的韻。如果被切字的韻是「東冬鍾江虞模尤幽」八個韻之一，則不需要確定開合。</li>
+      <li>規則 6.3：如果反切上下字均為開口，則被切字為開口。</li>
+      <li>規則 6.4：如果反切下字為合口，則被切字為合口。</li>
+      <li>規則 6.5：如果反切上字為合口，反切下字為幫組，則被切字為合口。</li>
+      <li>規則 6.6：在其餘情況下，不能根據反切上下字的開合確定被切字的開合，被切字可能為開口或合口。</li>
+    </ul>
+    <b>被切字的韻約束被切字的開合</b>
+    <ul>
+      <li>規則 7.1：「咍痕欣嚴之魚臻蕭宵肴豪侯侵覃談鹽添咸銜」十九個韻只能是開口。</li>
+      <li>規則 7.2：「灰魂文凡」四個韻只能是合口。</li>
+    </ul>
+    <b>被切字的韻約束被切字的等</b>
+    <ul>
+      <li>規則 8.1：「冬模泰咍灰痕魂寒豪唐登侯覃談」十四個韻只能是一等。</li>
+      <li>規則 8.2：「江佳皆夬刪山肴耕咸銜」十個韻只能是二等。</li>
+      <li>規則 8.3：「鍾支脂之微魚虞祭廢眞臻欣元文仙宵陽清蒸尤幽侵鹽嚴凡」二十五個韻只能是三等。</li>
+      <li>規則 8.4：「齊先蕭青添」五個韻只能是四等。</li>
+      <li>規則 8.5：「東歌」兩個韻只能是一等或三等。</li>
+      <li>規則 8.6：「麻庚」兩個韻只能是二等或三等。</li>
+    </ul>
+    <b>被切字的聲紐約束被切字的等</b>
+    <ul>
+      <li>規則 9.1：端組只能是一等或四等，知組只能是二等或三等，精組不能是二等，莊組只能是二等或三等，章組只能是三等，羣母只能是三等，匣母不能是三等，云母、以母只能是三等。</li>
+    </ul>
+  </div>
+
+  <div id="modalTemplateDiv2" style="display: none;">
+    <h2>關於</h2>
+    <p>自動反切器（下稱「本頁面」）由 <a href="https://nk2028.shn.hk/">Ngiox Khyen 2028 項目</a>開發。我們開發有關語言學的項目，尤其是有關歷史漢語語音學，異體字和日語語言學的項目。</p>
+    <p>本頁面由綾香製作，歡迎與我聯絡～我的電郵是 <a id="mweilbwox" href="mailto:user@example.org">user@example.org</a>。</p>
+    <p>本頁面原始碼公開於 <a href="https://github.com/nk2028/pyanxchet">GitHub</a>。</p>
+
+    <h2>私隱權政策</h2>
+    <p>本頁面是一項開放原始碼的網絡服務。作為本頁面的開發者，我們對閣下的私隱非常重視。本頁面的開發者不會透過本頁面收集閣下的任何資料。</p>
+    <p>下面將具體介紹本頁面能在何種程度上保障閣下的私隱權。</p>
+    <b>閣下鍵入的內容</b>
+    <p>本頁面的開發者不會收集閣下在本頁面中鍵入的任何內容。任何與閣下鍵入的內容相關的運算全部在閣下的系統中完成。本頁面不會將包括鍵入的反切在內的任何資料傳送至任何伺服器。</p>
+    <b>閣下的其他資料</b>
+    <p>本頁面使用的內容託管於以下站點：GitHub Pages、jsDelivr、cdnjs。在閣下訪問本頁面時，閣下的瀏覽器將與這些站點交互。本頁面的開發者並不能讀取閣下訪問這些站點時產生的資料，亦無法控制這些站點如何使用閣下訪問時產生的資料。</p>
+  </div>
+
+  <script>var _h='&#x73;&#x68;&#x6E;&#x2E;&#x68;&#x6B;';var _a='&#x40;&#x6D;&#x61;&#x69;&#x6C;&#x2E;';var _n='&#x61;&#x79;&#x61;&#x6b;&#x61;';var _e=_n+_a+_h;_a=document.createElement('span');_a.innerHTML=_e;_h=document.getElementById('mweilbwox');_h.innerText=_a.innerText;_h.href='m'+'a'+'ilto'+':'+_a.innerText;</script>
+  <script>
+    const modal1 = new tingle.modal({ closeLabel: '' });
+    modal1.setContent(document.getElementById('modalTemplateDiv1').innerHTML);
+    const modal2 = new tingle.modal({ closeLabel: '' });
+    modal2.setContent(document.getElementById('modalTemplateDiv2').innerHTML);
+  </script>
+  <script>觸發反切();</script>
+</body>
+</html>
