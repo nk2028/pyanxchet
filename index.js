@@ -50,24 +50,24 @@ function 處理多音字選擇() {
   const 上字音韻地位 = Pyanxchet.Qieyun.音韻地位.from編碼(上字編碼);
   const 下字音韻地位 = Pyanxchet.Qieyun.音韻地位.from編碼(下字編碼);
 
-  const { 反切過程 } = Pyanxchet.pyanxchet(上字, 下字, 上字音韻地位, 下字音韻地位);
-
   const fragment = document.createDocumentFragment();
 
   let p = document.createElement('p');
   const b = document.createElement('b');
-  b.innerText = 反切過程[0];
+  b.innerText = `${上字}${下字}切`;
   p.appendChild(b);
   fragment.appendChild(p);
 
   p = document.createElement('p');
-  p.appendChild(document.createTextNode(反切過程[1]));
+  p.appendChild(document.createTextNode(`${上字}：${上字音韻地位.描述}${Pyanxchet.生成擬音(上字音韻地位)}`));
   p.appendChild(document.createElement('br'));
-  p.appendChild(document.createTextNode(反切過程[2]));
+  p.appendChild(document.createTextNode(`${下字}：${下字音韻地位.描述}${Pyanxchet.生成擬音(下字音韻地位)}`));
   fragment.appendChild(p);
 
+  const { 反切過程 } = Pyanxchet.pyanxchet(上字音韻地位, 下字音韻地位);
+
   const ul = document.createElement('ul');
-  for (const line of 反切過程.slice(3)) {
+  for (const line of 反切過程) {
     const li = document.createElement('li');
     li.innerText = line;
     ul.appendChild(li);

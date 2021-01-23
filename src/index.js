@@ -2,6 +2,7 @@ import Qieyun from 'qieyun';
 import StringLogger from './string-logger.js';
 import 生成擬音 from './autoderiver/index.js';
 
+export { default as 生成擬音 } from './autoderiver/index.js';;
 export { default as Qieyun } from 'qieyun';
 
 const logger = new StringLogger();
@@ -173,12 +174,7 @@ function 確定被切字開合們(上字音韻地位, 下字音韻地位) {
  * @param {Qieyun.音韻地位} 上字音韻地位
  * @param {Qieyun.音韻地位} 下字音韻地位
  */
-export function pyanxchet(上字, 下字, 上字音韻地位, 下字音韻地位) {
-  logger.log(`${上字}${下字}切`);
-  logger.log(`${上字}：${上字音韻地位.描述}${生成擬音(上字音韻地位)}`);
-  logger.log(`${下字}：${下字音韻地位.描述}${生成擬音(下字音韻地位)}`);
-  //${生成擬音(上字音韻地位)}
-
+export function pyanxchet(上字音韻地位, 下字音韻地位) {
   // 1. 確定韻
   const 下字韻 = 下字音韻地位.韻;
   const 被切字韻 = 下字韻;

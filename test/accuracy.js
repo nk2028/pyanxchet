@@ -18,7 +18,7 @@ outer: for (const 音韻地位 of Qieyun.iter音韻地位()) {
       const 預測被切字音韻地位們 = [];
       for (const 上字音韻地位 of 上字音韻地位們) {
         for (const 下字音韻地位 of 下字音韻地位們) {
-          const { 被切字音韻地位們 } = pyanxchet(上字, 下字, 上字音韻地位, 下字音韻地位);
+          const { 被切字音韻地位們 } = pyanxchet(上字音韻地位, 下字音韻地位);
           if (被切字音韻地位們.some((當前音韻地位) => 當前音韻地位.等於(音韻地位))) {
             correct_count++;
             continue outer;
