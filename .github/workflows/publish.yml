@@ -43,7 +43,7 @@ jobs:
 
         (
         # Move build artifacts
-        mv index.html index.js pyanxchet.min.js LICENSE $temp_dir
+        mv index.html index.js index.css pyanxchet.min.js LICENSE $temp_dir
         cd $temp_dir
 
         # Set commit identity

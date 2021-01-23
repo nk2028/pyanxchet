@@ -13,36 +13,29 @@
   <script src="index.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@2.0.5"/>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hanamin@latest/HanaMin.min.css"/>
-  <style>
-  body { line-height: 1.6; padding-left: 10em; padding-right: 10em; }
-  @media only screen and (max-width: 1192px) {
-    body { padding-left: 1em; padding-right: 1em; }
-  }
-  :lang(zh) { font-family: sans-serif, HanaMin, sans-serif; }
-  .pure-form select { padding-top: 0; padding-bottom: 0; width: 8em; }
-  .pure-form input[type="text"] { display: inline-block; width: 6em; }
-  a:link { color: #0366d6; text-decoration: none; }
-  a:link:hover { border-bottom: 1px solid; }
-  ul { padding-left: 1em; }
-  </style>
+  <link rel="stylesheet" href="index.css"/>
 </head>
 <body>
   <div class="tingle-content-wrapper">
-    <h1>自動反切器</h1>
+    <nav>
+      <h1>自動反切器</h1>
+      <input type="button" value="反切規則" onclick="modal1.open(); return false"/>
+      <input type="button" value="關於" onclick="modal2.open(); return false"/>
+    </nav>
 
-    <form class="pure-form" onsubmit="觸發反切(); return false">
-      <p><label>請輸入兩個字的切語：<input id="反切輸入" type="text" value="德紅" onkeyup="觸發反切(); return false"/></label></p>
-      <p>
-        <select id="上字讀音" onchange="處理多音字選擇(); return false"></select>
-        <select id="下字讀音" onchange="處理多音字選擇(); return false"></select>
-      </p>
-    </form>
-    <p><output id="結果"></output></p>
-    <p>
-      <span onclick="modal1.open(); return false" style="color: deeppink;">反切規則</span>
-      <span onclick="modal0.open(); return false" style="color: deeppink;">關於</span>
-      <span onclick="modal2.open(); return false" style="color: deeppink;">私隱權政策</span>
-    </p>
+    <div class="main-container flex-container">
+      <div class="flex-inner flex-inner-first">
+        <form class="pure-form" onsubmit="觸發反切(); return false">
+          <p><label>請輸入兩個字的切語：<input id="反切輸入" type="text" value="德紅" onkeyup="觸發反切(); return false"/></label></p>
+          <p><label>上字音韻地位：<select id="上字讀音" onchange="處理多音字選擇(); return false"></select></label></p>
+          <p><label>下字音韻地位：<select id="下字讀音" onchange="處理多音字選擇(); return false"></select></label></p>
+        </form>
+      </div>
+
+      <div class="flex-inner flex-inner-second">
+        <p><output id="結果"></output></p>
+      </div>
+    </div>
   </div>
 
   <div id="modalTemplateDiv1" style="display: none;">
@@ -104,32 +97,28 @@
     </ul>
   </div>
 
-  <div id="modalTemplateDiv0" style="display: none;">
+  <div id="modalTemplateDiv2" style="display: none;">
     <h2>關於</h2>
     <p>自動反切器（下稱「本頁面」）由 <a href="https://nk2028.shn.hk/">Ngiox Khyen 2028 項目</a>開發。我們開發有關語言學的項目，尤其是有關歷史漢語語音學，異體字和日語語言學的項目。</p>
     <p>本頁面由綾香製作，歡迎與我聯絡～我的電郵是 <a id="mweilbwox" href="mailto:user@example.org">user@example.org</a>。</p>
     <p>本頁面原始碼公開於 <a href="https://github.com/nk2028/pyanxchet">GitHub</a>。</p>
-  </div>
 
-  <div id="modalTemplateDiv2" style="display: none;">
     <h2>私隱權政策</h2>
     <p>自動反切器（下稱「本頁面」）是一項開放原始碼的網絡服務。作為本頁面的開發者，我們對閣下的私隱非常重視。本頁面的開發者不會透過本頁面收集閣下的任何資料。</p>
     <p>下面將具體介紹本頁面能在何種程度上保障閣下的私隱權。</p>
     <b>閣下鍵入的內容</b>
     <p>本頁面的開發者不會收集閣下在本頁面中鍵入的任何內容。任何與閣下鍵入的內容相關的運算全部在閣下的系統中完成。本頁面不會將包括鍵入的反切在內的任何資料傳送至任何伺服器。</p>
     <b>閣下的其他資料</b>
-    <p>本頁面使用的內容託管於以下站點：GitHub Pages、jsDelivr、cdnjs。在閣下訪問本頁面時，閣下的瀏覽器將與這些站點交互。本頁面的開發者並不能讀取閣下訪問這些站點時產生的資料，亦無法控制這些站點如何使用閣下訪問時產生的資料。<p>
+    <p>本頁面使用的內容託管於以下站點：GitHub Pages、jsDelivr、cdnjs。在閣下訪問本頁面時，閣下的瀏覽器將與這些站點交互。本頁面的開發者並不能讀取閣下訪問這些站點時產生的資料，亦無法控制這些站點如何使用閣下訪問時產生的資料。</p>
   </div>
 
   <script>var _h='&#x73;&#x68;&#x6E;&#x2E;&#x68;&#x6B;';var _a='&#x40;&#x6D;&#x61;&#x69;&#x6C;&#x2E;';var _n='&#x61;&#x79;&#x61;&#x6b;&#x61;';var _e=_n+_a+_h;_a=document.createElement('span');_a.innerHTML=_e;_h=document.getElementById('mweilbwox');_h.innerText=_a.innerText;_h.href='m'+'a'+'ilto'+':'+_a.innerText;</script>
-  <script>觸發反切();</script>
   <script>
-    const modal0 = new tingle.modal({ closeLabel: '' });
-    modal0.setContent(document.getElementById('modalTemplateDiv0').innerHTML);
     const modal1 = new tingle.modal({ closeLabel: '' });
     modal1.setContent(document.getElementById('modalTemplateDiv1').innerHTML);
     const modal2 = new tingle.modal({ closeLabel: '' });
     modal2.setContent(document.getElementById('modalTemplateDiv2').innerHTML);
   </script>
+  <script>觸發反切();</script>
 </body>
 </html>
