@@ -52,5 +52,29 @@ function 處理多音字選擇() {
 
   const { 反切過程 } = Pyanxchet.pyanxchet(上字, 下字, 上字音韻地位, 下字音韻地位);
 
-  document.getElementById('結果').innerText = 反切過程;
+  const fragment = document.createDocumentFragment();
+
+  let p = document.createElement('p');
+  const b = document.createElement('b');
+  b.innerText = 反切過程[0];
+  p.appendChild(b);
+  fragment.appendChild(p);
+
+  p = document.createElement('p');
+  p.appendChild(document.createTextNode(反切過程[1]));
+  p.appendChild(document.createElement('br'));
+  p.appendChild(document.createTextNode(反切過程[2]));
+  fragment.appendChild(p);
+
+  const ul = document.createElement('ul');
+  for (const line of 反切過程.slice(3)) {
+    const li = document.createElement('li');
+    li.innerText = line;
+    ul.appendChild(li);
+  }
+  fragment.appendChild(ul);
+
+  const 結果 = document.getElementById('結果');
+  結果.innerHTML = '';
+  結果.appendChild(fragment);
 }

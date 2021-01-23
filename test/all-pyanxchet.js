@@ -16,7 +16,7 @@ for (const 音韻地位 of Qieyun.iter音韻地位()) {
         for (const 下字音韻地位 of 下字音韻地位們) {
           const { 反切過程 } = pyanxchet(上字, 下字, 上字音韻地位, 下字音韻地位);
           console.log(i++);
-          console.log(反切過程);
+          console.log(反切過程.join('\n'));
           console.log(`實際被切字音韻地位: ${音韻地位.描述}（${音韻地位.代表字}，${反切}切）${生成擬音(音韻地位)}`);
           console.log();
         }

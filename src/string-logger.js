@@ -7,11 +7,9 @@ export default class StringLogger {
     this.res.push(args.join(' '));
   }
 
-  tick() {
+  popAll() {
+    const tmp = this.res;
     this.res = [];
-  }
-
-  tock() {
-    return this.res.join('\n');
+    return tmp;
   }
 }
