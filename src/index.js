@@ -2,7 +2,8 @@ import Qieyun from 'qieyun';
 import StringLogger from './string-logger.js';
 import 生成擬音 from './autoderiver/index.js';
 
-export { default as 生成擬音 } from './autoderiver/index.js';;
+export { default as 音韻編碼到書影連結 } from './book-image.js';
+export { default as 生成擬音 } from './autoderiver/index.js';
 export { default as Qieyun } from 'qieyun';
 
 const logger = new StringLogger();
@@ -21,7 +22,7 @@ const 四等韻 = '齊先蕭青添';
 const 一三等韻 = '東歌';
 const 二三等韻 = '麻庚';
 
-function 生成音韻地位説明(音韻地位) {
+export function 生成音韻地位説明(音韻地位) {
   const { 代表字 } = 音韻地位;
   if (代表字 == null) {
     return '（無對應字）';
@@ -351,18 +352,6 @@ export function pyanxchet(上字音韻地位, 下字音韻地位) {
           被切字音韻地位們.push(new Qieyun.音韻地位(被切字母, 被切字開合, 被切字等, 被切字重紐, 被切字韻, 被切字聲));
         }
       }
-    }
-  }
-
-  if (被切字音韻地位們.length === 0) {
-    logger.log('無對應音節');
-  } else if (被切字音韻地位們.length === 1) {
-    const 當前音韻地位 = 被切字音韻地位們[0];
-    logger.log(`預測被切字音韻地位：${當前音韻地位.描述}${生成音韻地位説明(當前音韻地位)}${生成擬音(當前音韻地位)}`);
-  } else {
-    let i = 1;
-    for (const 當前音韻地位 of 被切字音韻地位們) {
-      logger.log(`預測被切字音韻地位 ${i++}：${當前音韻地位.描述}${生成音韻地位説明(當前音韻地位)}${生成擬音(當前音韻地位)}`);
     }
   }
 
