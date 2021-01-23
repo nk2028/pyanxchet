@@ -11,6 +11,9 @@ ul { padding-left: 1em; }
 .tingle-modal-box__content p, .tingle-modal-box__content ul { color: #5c5c5c; }
 .tingle-modal-box__content p a:link:hover { border-bottom: 1px solid black; color: initial; transition: 0.5s; }
 
+.flex-inner-second p, .flex-inner-second ul { color: #5c5c5c; }
+.flex-inner-second p a:link:hover { border-bottom: 1px solid black; color: initial; transition: 0.5s; }
+
 .pure-form select { background-color: rgba(255,255,255,.5); padding-top: 0; padding-bottom: 0; width: 8rem; }
 .pure-form input[type="text"] { background-color: rgba(255,255,255,.5); display: inline-block; width: 5rem; }
 
