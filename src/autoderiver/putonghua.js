@@ -3801,7 +3801,7 @@ const res = {
 }[音韻地位.編碼];
 
 if (res == null) {
-    throw new Error('未知');
+  throw new Error('未知');
 }
 
 return res;

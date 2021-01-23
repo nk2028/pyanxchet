@@ -18,6 +18,8 @@ jobs:
       run: npm install
     - name: Build
       run: npm run build
+    - name: Test
+      run: node test/accuracy.js
     - name: Publish to GitHub pages
       run: |
         # Create a temporary directory
