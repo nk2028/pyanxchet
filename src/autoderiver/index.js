@@ -1,4 +1,4 @@
-import { kyonh, putonghua, gwongzau } from 'qieyun-examples-node';
+import QieyunExamples from 'qieyun-examples-node';
 
 function noThrow(f) {
   return function inner(...args) {
@@ -9,6 +9,8 @@ function noThrow(f) {
     }
   };
 }
+
+const { kyonh, putonghua, gwongzau } = QieyunExamples;
 
 const kyonh1 = noThrow(kyonh);
 const putonghua1 = noThrow(putonghua);
