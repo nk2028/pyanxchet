@@ -2,7 +2,7 @@ body { line-height: 1.6; }
 a:link { border-bottom: 1px solid; color: inherit; text-decoration: none; }
 ul { padding-left: 1em; }
 
-.tingle-modal { background: rgba(0,0,0,.70); }
+.tingle-modal { background: rgba(0,0,0,.70); -ms-user-select: text; -webkit-user-select: text; user-select: text; }
 .tingle-modal-box__content { background-color: #f8f8f5; }
 @media (max-width :540px) {
   .tingle-modal__close { background-color: #f0f0e7; border-bottom: 1px solid #ccc; box-shadow: 0 1px 2px #aaa; }
@@ -19,6 +19,7 @@ ul { padding-left: 1em; }
 
 html { background-color: #f8f8f5; }
 :lang(zh) { font-family: sans-serif, HanaMin, sans-serif; }
+::selection { background-color: #efefeb; }
 
 nav { background-color: #f0f0e7; border-bottom: 1px solid #ccc; box-shadow: 0 1px 2px #aaa; padding: 0 1em; position: sticky; top: 0; }
 nav h1 { color: rgba(0,0,0,.7); font-size: 1.5rem; display: inline-block; margin: 1.25rem 0; }
