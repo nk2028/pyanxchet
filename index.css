@@ -20,6 +20,7 @@ ul { padding-left: 1em; }
 html { background-color: #f8f8f5; }
 :lang(zh) { font-family: sans-serif, HanaMin, sans-serif; }
 ::selection { background-color: #efefeb; }
+nav ::selection { background-color: #dfdfdb; }
 
 nav { background-color: #f0f0e7; border-bottom: 1px solid #ccc; box-shadow: 0 1px 2px #aaa; padding: 0 1em; position: sticky; top: 0; }
 nav h1 { color: rgba(0,0,0,.7); font-size: 1.5rem; display: inline-block; margin: 1.25rem 0; }
