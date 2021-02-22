@@ -5,7 +5,7 @@
     "build": "rollup -c"
   },
   "dependencies": {
-    "qieyun-examples-node": "^0.1.0"
+    "qieyun-examples-node": "^0.1.1"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^17.0.0",
