@@ -63,13 +63,14 @@ function 處理多音字選擇() {
   let p = document.createElement('p');
 
   p.appendChild(document.createTextNode(`${上字}：`));
-  const 上字書影連結 = Pyanxchet.音韻編碼到書影連結(上字音韻地位.編碼);
-  if (上字書影連結 == null) {
+  const 上字小韻連結 = Pyanxchet.音韻編碼到小韻連結(上字音韻地位.編碼);
+  if (上字小韻連結 == null) {
     p.appendChild(document.createTextNode(上字音韻地位.描述));
   } else {
     a = document.createElement('a');
     a.appendChild(document.createTextNode(上字音韻地位.描述));
-    a.href = 上字書影連結;
+    a.target = '_blank';
+    a.href = 上字小韻連結;
     p.appendChild(a);
   }
   p.appendChild(document.createTextNode(`${Pyanxchet.生成音韻地位説明(上字音韻地位)}${Pyanxchet.生成擬音(上字音韻地位)}`));
@@ -77,13 +78,14 @@ function 處理多音字選擇() {
   p.appendChild(document.createElement('br'));
 
   p.appendChild(document.createTextNode(`${下字}：`));
-  const 下字書影連結 = Pyanxchet.音韻編碼到書影連結(下字音韻地位.編碼);
-  if (下字書影連結 == null) {
+  const 下字小韻連結 = Pyanxchet.音韻編碼到小韻連結(下字音韻地位.編碼);
+  if (下字小韻連結 == null) {
     p.appendChild(document.createTextNode(下字音韻地位.描述));
   } else {
     a = document.createElement('a');
     a.appendChild(document.createTextNode(下字音韻地位.描述));
-    a.href = 下字書影連結;
+    a.target = '_blank';
+    a.href = 下字小韻連結;
     p.appendChild(a);
   }
   p.appendChild(document.createTextNode(`${Pyanxchet.生成音韻地位説明(下字音韻地位)}${Pyanxchet.生成擬音(下字音韻地位)}`));
@@ -114,13 +116,14 @@ function 處理多音字選擇() {
     const 當前音韻地位 = 被切字音韻地位們[0];
     const p = document.createElement('p');
     p.appendChild(document.createTextNode('預測被切字音韻地位：'));
-    const 當前書影連結 = Pyanxchet.音韻編碼到書影連結(當前音韻地位.編碼);
-    if (當前書影連結 == null) {
+    const 當前小韻連結 = Pyanxchet.音韻編碼到小韻連結(當前音韻地位.編碼);
+    if (當前小韻連結 == null) {
       p.appendChild(document.createTextNode(當前音韻地位.描述));
     } else {
       a = document.createElement('a');
       a.appendChild(document.createTextNode(當前音韻地位.描述));
-      a.href = 當前書影連結;
+      a.target = '_blank';
+      a.href = 當前小韻連結;
       p.appendChild(a);
     }
     p.appendChild(document.createTextNode(`${Pyanxchet.生成音韻地位説明(當前音韻地位)}${Pyanxchet.生成擬音(當前音韻地位)}`));
@@ -135,13 +138,14 @@ function 處理多音字選擇() {
         p.appendChild(document.createElement('br'));
       }
       p.appendChild(document.createTextNode(`預測被切字音韻地位 ${i++}：`));
-      const 當前書影連結 = Pyanxchet.音韻編碼到書影連結(當前音韻地位.編碼);
-      if (當前書影連結 == null) {
+      const 當前小韻連結 = Pyanxchet.音韻編碼到小韻連結(當前音韻地位.編碼);
+      if (當前小韻連結 == null) {
         p.appendChild(document.createTextNode(當前音韻地位.描述));
       } else {
         a = document.createElement('a');
         a.appendChild(document.createTextNode(當前音韻地位.描述));
-        a.href = 當前書影連結;
+        a.target = '_blank';
+        a.href = 當前小韻連結;
         p.appendChild(a);
       }
       p.appendChild(document.createTextNode(`${Pyanxchet.生成音韻地位説明(當前音韻地位)}${Pyanxchet.生成擬音(當前音韻地位)}`));
