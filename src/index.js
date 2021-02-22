@@ -1,6 +1,5 @@
 import Qieyun from 'qieyun';
 import StringLogger from './string-logger.js';
-import 生成擬音 from './autoderiver/index.js';
 
 export { default as 音韻編碼到小韻連結 } from './sieuxyonh.js';
 export { default as 生成擬音 } from './autoderiver/index.js';
@@ -67,12 +66,12 @@ const 母到對應的等們 = {
   清: ['一', '三', '四'],
   從: ['一', '三', '四'],
   心: ['一', '三', '四'],
-  邪: ['一', '三', '四'],
+  邪: ['三'],
   莊: ['二', '三'],
   初: ['二', '三'],
   崇: ['二', '三'],
   生: ['二', '三'],
-  俟: ['二', '三'],
+  俟: ['三'],
   章: ['三'],
   昌: ['三'],
   常: ['三'],
