@@ -2,7 +2,7 @@ import Qieyun from 'qieyun';
 import StringLogger from './string-logger.js';
 import 生成擬音 from './autoderiver/index.js';
 
-export { default as 音韻編碼到書影連結 } from './book-image.js';
+export { default as 音韻編碼到小韻連結 } from './sieuxyonh.js';
 export { default as 生成擬音 } from './autoderiver/index.js';
 export { default as Qieyun } from 'qieyun';
 
