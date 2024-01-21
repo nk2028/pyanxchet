@@ -1,16 +1,49 @@
 {
-  "private": true,
+  "name": "pyanxchet",
+  "author": "Ngiox Khyen 2028 Project | Ngiox Khyen 2028 項目",
+  "license": "CC0-1.0",
+  "description": "A tool to automate the process of obtaining the phonological position of the Qieyun phonological system of a Chinese character by its fanqie | 自動反切器可以根據反切自動得到被切字的中古音韻地位及現代發音，並附有詳細的推理步驟及規則説明",
+  "keywords": [
+    "historical-linguistics",
+    "middle-chinese",
+    "tshet-uinh",
+    "qieyun",
+    "音韻學",
+    "《切韻》音系",
+    "中古音",
+    "反切",
+    "反切器",
+    "推導普通話",
+    "推導廣州音"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nk2028/pyanxchet.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nk2028/pyanxchet/issues"
+  },
   "type": "module",
+  "homepage": "pyanxchet/",
   "scripts": {
-    "build": "rollup -c"
+    "postinstall": "bun run ./tools/qieyun-examples-node.js",
+    "dev": "vite",
+    "check": "bun dprint check",
+    "fmt": "bun dprint fmt",
+    "lint": "eslint . --ext js,mjs,cjs,jsx --report-unused-disable-directives --max-warnings 0",
+    "test": "bun run ./test/accuracy.js",
+    "build --base=/qieyun-tools/": "bun run ./tools/qieyun-examples-node.js && bun vite build --base=/pyanxchet/",
+    "build --base=/": "bun run ./tools/qieyun-examples-node.js && bun vite build --base=/",
+    "prebuild": "bun run ./tools/qieyun-examples-node.js",
+    "build": "bun vite build",
+    "preview": "bun vite preview"
   },
   "dependencies": {
-    "qieyun-examples-node": "^0.1.1"
+    "qieyun": "^0.13.5"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^17.0.0",
-    "@rollup/plugin-node-resolve": "^11.1.0",
-    "rollup": "^2.37.1",
-    "rollup-plugin-terser": "^7.0.2"
+    "dprint": "^0.45.0",
+    "eslint": "^8.55.0",
+    "vite": "^5.0.8"
   }
 }

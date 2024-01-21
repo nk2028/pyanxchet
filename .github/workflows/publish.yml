@@ -1,59 +1,81 @@
-name: Publish
+name: 'Publish | 發佈'
 
 on:
+  workflow_dispatch:
   push:
     branches: [ main ]
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
 jobs:
   publish:
-    runs-on: ubuntu-20.04
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Setup Node.js
-      uses: actions/setup-node@v1
-      with:
-        node-version: 14
-        registry-url: https://registry.npmjs.org/
-    - name: Install dependencies
-      run: npm install
-    - name: Build
-      run: npm run build
-    - name: Test
-      run: node test/accuracy.js
-    - name: Publish to GitHub pages
-      run: |
-        # Create a temporary directory
-        export temp_dir=`mktemp -d -p ~`
+      - name: 'Get Latest Code | 開闢作業空間'
+        uses: actions/checkout@v4
+      - name: 'Setup Bun | 安裝 Bun'
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: '1.0.x'
+          registry-url: 'https://repo.huaweicloud.com/repository/npm/'
+      - name: 'Install Dependencies | 安裝依賴'
+        run: bun install
+      - name: 'ESLint Code | ESLint 檢驗'
+        run: bun run lint
+      - name: 'Test | 内部檢驗'
+        run: bun run test
+      - name: 'Build Project | 打包構建'
+        run: bun run build --base=/pyanxchet/
+      - name: 'Upload Artifacts | 上傳資源'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: "./Artifacts"
+      - name: 'Deploy to GitHub Pages | 部署到 GitHub Pages'
+        uses: actions/deploy-pages@v4
+      - name: 'Publish to `gh-pages` branch | 發佈到 `gh-pages` 分支'
+        run: |
+          # Create a temporary directory | 創建臨時目錄
+          export temp_dir=`mktemp -d -p ~`
 
-        (
-        # Preserve .git
-        mkdir $temp_dir/tmp
-        mv .git $temp_dir/tmp
-        cd $temp_dir/tmp
+          (
+          # Preserve .git | 保存當前 `./.git` 至 `./$temp_dir/tmp`
+          mkdir $temp_dir/tmp
+          mv .git $temp_dir/tmp
+          cd $temp_dir/tmp
 
-        # Switch branch
-        git fetch
-        git checkout gh-pages
+          # Switch branch | 切換分支
+          git fetch
+          git checkout gh-pages
 
-        # Move .git to destination directory
-        cd ..
-        mv tmp/.git .
-        rm -rf tmp
-        )
+          # Move .git to destination directory | 移動切換分支后的 `./$temp_dir/tmp/.git` 至 `./$temp_dir/`
+          cd ..
+          mv tmp/.git .
+          rm -rf tmp
+          )
 
-        (
-        # Move build artifacts
-        mv index.html index.js index.css pyanxchet.min.js LICENSE $temp_dir
-        cd $temp_dir
+          (
+          # Move build artifacts | 移動構建資源
+          mv LICENSE ./Artifacts/* $temp_dir
+          cd $temp_dir
 
-        # Set commit identity
-        git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-        git config user.name "github-actions[bot]"
+          # Set commit identity | 設置提交身份
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
 
-        # Publish
-        git add .
-        if [ -n "$(git status --porcelain)" ]; then
-          git commit -m "Publish `TZ='Asia/Hong_Kong' date`"
-          git push origin gh-pages
-        fi
-        )
+          # Publish | 發佈
+          git add .
+          if [ -n "$(git status --porcelain)" ]; then
+            git commit -m "Publish `TZ='Asia/Hong_Kong' date` | 發佈於 `TZ='Asia/Hong_Kong' date`"
+            git push origin gh-pages
+          fi
+          )

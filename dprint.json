@@ -1,0 +1,35 @@
+{
+  "typescript": {
+  },
+  "json": {
+  },
+  "markdown": {
+  },
+  "toml": {
+  },
+  "dockerfile": {
+  },
+  "biome": {
+  },
+  "ruff": {
+  },
+  "jupyter": {
+  },
+  "excludes": [
+    "**/Artifacts",
+    "**/node_modules",
+    "**/src/qieyun-examples-node.js",
+    "**/*-lock.json",
+    "**/pnpm-lock.yaml"
+  ],
+  "plugins": [
+    "https://plugins.dprint.dev/typescript-0.88.9.wasm",
+    "https://plugins.dprint.dev/json-0.19.1.wasm",
+    "https://plugins.dprint.dev/markdown-0.16.3.wasm",
+    "https://plugins.dprint.dev/toml-0.5.4.wasm",
+    "https://plugins.dprint.dev/dockerfile-0.3.0.wasm",
+    "https://plugins.dprint.dev/biome-0.3.1.wasm",
+    "https://plugins.dprint.dev/ruff-0.0.8.wasm",
+    "https://plugins.dprint.dev/jupyter-0.1.2.wasm"
+  ]
+}

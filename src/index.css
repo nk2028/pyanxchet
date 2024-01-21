@@ -18,7 +18,25 @@ ul { padding-left: 1em; }
 .pure-form input[type="text"] { background-color: rgba(255,255,255,.5); display: inline-block; width: 5rem; }
 
 html { background-color: #f8f8f5; }
-:lang(zh) { font-family: sans-serif, HanaMin, sans-serif; }
+
+/* Font Family */
+:lang(zh) {
+    font-family:
+        "Source Han Sans K", "Source Han Sans KR", "Source Han Sans C", "Source Han Sans SC", "Source Han Sans HK", "Source Han Sans TC",
+        "Noto Sans CJK KR", "Noto Sans CJK JP", "Noto Sans CJK SC", "Noto Sans CJK HK", "Noto Sans CJK TC",
+        "Noto Sans KR", "Noto Sans JP", "Noto Sans SC", "Noto Sans HK", "Noto Sans TC",
+        ui-sans-serif,
+        sans-serif,
+        "Source Han Serif K", "Source Han Serif KR", "Source Han Serif C", "Source Han Serif SC", "Source Han Serif HK", "Source Han Serif TC",
+        "Noto Serif CJK KR", "Noto Serif CJK JP", "Noto Serif CJK SC", "Noto Serif CJK HK", "Noto Serif CJK TC",
+        "Noto Serif KR", "Noto Serif JP", "Noto Serif SC", "Noto Serif HK", "Noto Serif TC",
+        "HanaMin",
+        ui-serif,
+		    serif;
+    /* font-language-override: "JAN"; */
+    /* font-language-override: "KOR"; */
+}
+
 ::selection { background-color: #efefeb; }
 nav ::selection { background-color: #dfdfdb; }
 
