@@ -1,0 +1,4 @@
+# 示例：運行所有爬蟲抓取并索引你的站點。
+# 全部語法：https://developers.google.cn/search/docs/crawling-indexing/robots/create-robots-txt?hl=zh-tw
+User-agent: *
+Allow: /

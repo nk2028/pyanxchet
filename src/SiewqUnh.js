@@ -1,4 +1,4 @@
-const sieuxyonh = {};
+const SiewqUnh = {};
 `EAA
 GAA
 JBA
@@ -3872,10 +3872,11 @@ A9D
 B9D
 e9L
 M9L
-K9L`.split('\n').forEach((n, i) => void(sieuxyonh[n] = i + 1));
+K9L`.split("\n").forEach((n, i) => void (SiewqUnh[n] = i + 1));
 
+// 導出音韻編碼到小韻連結函數
 export default function 音韻編碼到小韻連結(音韻編碼) {
-  const res = sieuxyonh[音韻編碼];
+  const res = SiewqUnh[音韻編碼];
   if (res == null) {
     return null;
   }

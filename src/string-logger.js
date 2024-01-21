@@ -4,7 +4,7 @@ export default class StringLogger {
   }
 
   log(...args) {
-    this.res.push(args.join(' '));
+    this.res.push(args.join(" "));
   }
 
   popAll() {
